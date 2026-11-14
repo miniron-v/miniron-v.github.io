@@ -258,19 +258,20 @@
       updateBannerVisibility();
     }
 
-    // 빌드를 교체할 때 BUILD_VERSION을 올리면 방문자 브라우저 캐시를 우회한다.
-    var BUILD_VERSION = "1.0.0";
+    // 빌드를 교체할 때 BUILD_ID를 바꾸면 방문자 브라우저 캐시를 우회한다.
+    var PRODUCT_VERSION = "1.0.0";
+    var BUILD_ID = "20261114";
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/yeonieum.loader.js?v=" + BUILD_VERSION;
+    var loaderUrl = buildUrl + "/yeonieum.loader.js?v=" + BUILD_ID;
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/yeonieum.data.unityweb?v=" + BUILD_VERSION,
-      frameworkUrl: buildUrl + "/yeonieum.framework.js.unityweb?v=" + BUILD_VERSION,
-      codeUrl: buildUrl + "/yeonieum.wasm.unityweb?v=" + BUILD_VERSION,
+      dataUrl: buildUrl + "/yeonieum.data?v=" + BUILD_ID,
+      frameworkUrl: buildUrl + "/yeonieum.framework.js?v=" + BUILD_ID,
+      codeUrl: buildUrl + "/yeonieum.wasm?v=" + BUILD_ID,
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Yeonieum",
       productName: "Yeonieum",
-      productVersion: BUILD_VERSION,
+      productVersion: PRODUCT_VERSION,
       showBanner: unityShowBanner,
       matchWebGLToCanvasSize: true,
     };
