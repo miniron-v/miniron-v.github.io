@@ -2,147 +2,93 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, viewport-fit=cover">
-  <title>WordLink</title>
-  <style>
-    /*
-     * FullWindow WebGL template
-     * - 브라우저 창(뷰포트) 전체를 게임 캔버스로 채움. 흰 여백/스크롤바 없음.
-     * - 창 크기가 바뀌면 캔버스 CSS 크기가 따라가고, Unity(matchWebGLToCanvasSize 기본값 true)가
-     *   매 프레임 렌더 해상도를 캔버스 크기 x devicePixelRatio 로 맞춘다.
-     */
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #231F20;
-    }
-
-    #unity-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      background: #231F20;
-      outline: none;
-      touch-action: none;          /* 모바일에서 스크롤/핀치줌 대신 게임 입력으로 */
-      -webkit-user-select: none;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    #unity-loading {
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: min(320px, 60vw);
-      pointer-events: none;
-    }
-
-    #unity-progress-bar {
-      height: 6px;
-      border-radius: 3px;
-      background: rgba(255, 255, 255, 0.15);
-      overflow: hidden;
-    }
-
-    #unity-progress-bar-full {
-      width: 0%;
-      height: 100%;
-      border-radius: 3px;
-      background: #ffffff;
-      transition: width 0.15s ease-out;
-    }
-
-    #unity-warning {
-      position: fixed;
-      left: 50%;
-      top: 8px;
-      transform: translateX(-50%);
-      max-width: calc(100% - 16px);
-      font: 14px/1.4 sans-serif;
-      display: none;
-      z-index: 10;
-    }
-
-    #unity-warning > div {
-      padding: 8px 12px;
-      margin-bottom: 4px;
-      border-radius: 4px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>연이음 (WordLink) - 오늘의 단어 연결 퍼즐</title>
+  <meta name="description" content="연이음(WordLink)은 매일 새로 나오는 단어 카드를 이어 하루 한 번 푸는 웹 퍼즐 게임입니다. 설치 없이 브라우저에서 바로 플레이할 수 있습니다.">
+  <link rel="canonical" href="https://miniron-v.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="연이음 (WordLink)">
+  <meta property="og:description" content="매일 새로 나오는 단어 연결 퍼즐. 브라우저에서 바로 플레이하세요.">
+  <meta property="og:url" content="https://miniron-v.github.io/">
+  <meta property="og:image" content="https://miniron-v.github.io/assets/logo.png">
+  <!-- ADSENSE: 게시자 ID가 나오면 아래 줄의 주석을 풀고 ca-pub-XXXXXXXXXXXXXXXX를 바꾼다. -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-  <canvas id="unity-canvas" tabindex="-1"></canvas>
-  <div id="unity-loading">
-    <div id="unity-progress-bar"><div id="unity-progress-bar-full"></div></div>
+  <div class="wrap">
+    <header class="hero">
+      <h1 style="margin:0"><img src="/assets/logo.png" alt="연이음" width="644" height="293"></h1>
+      <p class="tagline">하루 한 판, 단어와 단어를 잇는 퍼즐</p>
+      <a class="play" href="/wordlink/">지금 플레이하기</a>
+    </header>
+
+    <section>
+      <h2>연이음은 어떤 게임인가요?</h2>
+      <p>
+        연이음(WordLink)은 매일 새로운 퍼즐이 나오는 단어 연결 게임입니다.
+        시작 단어와 끝 단어가 주어지면, 손에 든 단어 카드로 둘 사이를 잇는 길을 만드는 게임입니다. 이웃한 단어끼리는 서로 관계가 있어야 합니다. <span class="todo">[확인 필요: 이 설명이 맞는지]</span>
+      </p>
+      <p>
+        설치나 회원가입 없이 브라우저에서 바로 플레이할 수 있고, PC와 모바일 모두 지원합니다.
+        2026 넥슨 대학생 게임잼 '재밌넥'에서 만들었습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>플레이 방법</h2>
+      <ol>
+        <li>화면 위쪽에 시작 단어와 끝 단어가 놓입니다. <span class="todo">[확인 필요: 실제 배치]</span></li>
+        <li>아래쪽 손패에서 단어 카드를 골라 시작과 끝 사이에 차례로 놓습니다.</li>
+        <li>이웃한 두 단어가 서로 관계가 있도록 이어야 합니다. 예를 들어 <span class="todo">[채워 주세요: 성공하는 연결 예시, 예) 씨앗 → 나무 → 숲]</span></li>
+        <li>손패에는 어디에도 이어지지 않는 함정 카드도 섞여 있습니다.</li>
+        <li>다 이었다고 생각하면 <strong>제출</strong> 버튼을 누릅니다. 어느 연결이 맞고 틀렸는지 알려 줍니다. <span class="todo">[채워 주세요: 기회가 몇 번인지, 성공·실패 조건]</span></li>
+      </ol>
+      <h3>조작</h3>
+      <ul>
+        <li>PC: 마우스로 카드를 끌어 옮깁니다. <span class="todo">[확인 필요]</span> <kbd>Esc</kbd>로 설정을 열고 닫습니다.</li>
+        <li>모바일: 손가락으로 카드를 끌어 옮깁니다. <span class="todo">[확인 필요]</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>특징</h2>
+      <ul>
+        <li><strong>오늘의 퍼즐</strong>: 날마다 새로운 퍼즐이 하나씩 나옵니다. 달력에서 출석 기록을 볼 수 있습니다.</li>
+        <li><strong>랭킹</strong>: 닉네임을 등록하면 다른 플레이어와 기록을 비교할 수 있습니다.</li>
+        <li><strong>결과 공유</strong>: 푼 결과를 복사해 친구에게 보낼 수 있습니다.</li>
+        <li><strong>3개 언어</strong>: 한국어, English, 日本語를 지원합니다.</li>
+        <li><strong>나레이터</strong>: 틀린 연결에는 나레이터가 한마디씩 반응합니다. "친구를 요리하려고 하지 마세요." 같은 식으로요.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>팁</h2>
+      <ul>
+        <li><span class="todo">[채워 주세요: 처음 하는 사람에게 도움이 되는 팁 2~3개]</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>만든 사람들</h2>
+      <p>팀 <span class="todo">[채워 주세요: 팀명]</span></p>
+      <ul>
+        <li><span class="todo">[채워 주세요: 이름 또는 닉네임 / 맡은 일]</span></li>
+      </ul>
+      <p>
+        2026 넥슨 대학생 게임잼 '재밌넥'(2026년 7월 24~26일, 판교 넥슨 사옥)에서 2박 3일 동안 만든 작품입니다.
+        <span class="todo">[채워 주세요: 제작 후기나 게임잼 이후 바뀐 점이 있으면 한 단락]</span>
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        <a href="/wordlink/">게임 플레이</a> ·
+        <a href="/privacy.html">개인정보처리방침</a> ·
+        문의: <span class="todo">[채워 주세요: 연락처 이메일]</span>
+      </p>
+      <p>© 2026 <span class="todo">[팀명]</span></p>
+    </footer>
   </div>
-  <div id="unity-warning"></div>
-
-  <script>
-    var canvas = document.querySelector("#unity-canvas");
-    var loading = document.querySelector("#unity-loading");
-    var progressFull = document.querySelector("#unity-progress-bar-full");
-    var warningBanner = document.querySelector("#unity-warning");
-
-    // Unity 가 에러/경고를 표시할 때 사용하는 배너. type: 'error' | 'warning' | 'info'
-    function unityShowBanner(msg, type) {
-      function updateBannerVisibility() {
-        warningBanner.style.display = warningBanner.children.length ? "block" : "none";
-      }
-      var div = document.createElement("div");
-      div.textContent = msg;
-      if (type == "error") div.style.background = "#ff4d4d";
-      else {
-        if (type == "warning") div.style.background = "#ffd24d";
-        else div.style.background = "#ffffff";
-        setTimeout(function () {
-          warningBanner.removeChild(div);
-          updateBannerVisibility();
-        }, 5000);
-      }
-      warningBanner.appendChild(div);
-      updateBannerVisibility();
-    }
-
-    var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/wordlink.loader.js?v=1.0.0";
-    var config = {
-      arguments: [],
-      dataUrl: buildUrl + "/wordlink.data.unityweb?v=1.0.0",
-      frameworkUrl: buildUrl + "/wordlink.framework.js.unityweb?v=1.0.0",
-      codeUrl: buildUrl + "/wordlink.wasm.unityweb?v=1.0.0",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "Yeonieum",
-      productName: "WordLink",
-      productVersion: "1.0.0",
-      showBanner: unityShowBanner,
-      // 캔버스 CSS 크기에 맞춰 렌더 해상도를 자동으로 맞춤 (기본값 true, 명시).
-      matchWebGLToCanvasSize: true,
-      // 고해상도(HiDPI) 화면에서 렌더 부하가 크면 아래 주석을 풀어 픽셀 비율을 제한할 수 있음.
-      // devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-    };
-
-
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = function () {
-      createUnityInstance(canvas, config, function (progress) {
-        progressFull.style.width = 100 * progress + "%";
-      }).then(function (unityInstance) {
-        loading.style.display = "none";
-        // 콘솔/외부 스크립트에서 접근 가능하도록 노출 (예: unityInstance.SetFullscreen(1))
-        window.unityInstance = unityInstance;
-        canvas.focus();
-      }).catch(function (message) {
-        unityShowBanner(String(message), "error");
-      });
-    };
-    document.body.appendChild(script);
-  </script>
 </body>
 </html>
