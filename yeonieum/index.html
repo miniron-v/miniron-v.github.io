@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, viewport-fit=cover">
-  <title>연이음 (WordLink) - 오늘의 단어 연결 퍼즐</title>
-  <meta name="description" content="연이음(WordLink)은 매일 새로 나오는 단어 카드를 이어 하루 한 번 푸는 웹 퍼즐 게임입니다. 2026 넥슨 대학생 게임잼 '재밌넥' 출품작.">
-  <link rel="canonical" href="https://miniron-v.github.io/wordlink/">
+  <title>연이음 (Yeonieum) - 오늘의 단어 연결 퍼즐</title>
+  <meta name="description" content="연이음(Yeonieum)은 매일 새로 나오는 단어 카드를 이어 하루 한 번 푸는 웹 퍼즐 게임입니다. 2026 넥슨 대학생 게임잼 '재밌넥' 출품작.">
+  <link rel="canonical" href="https://miniron-v.github.io/yeonieum/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="연이음 (WordLink)">
+  <meta property="og:title" content="연이음 (Yeonieum)">
   <meta property="og:description" content="매일 새로 나오는 단어 연결 퍼즐. 브라우저에서 바로 플레이하세요.">
-  <meta property="og:url" content="https://miniron-v.github.io/wordlink/">
+  <meta property="og:url" content="https://miniron-v.github.io/yeonieum/">
   <meta property="og:image" content="https://miniron-v.github.io/assets/logo.png">
-  <meta name="theme-color" content="#dfeaf8">
+  <meta name="theme-color" content="#E1EFFF">
   <!-- ADSENSE: 게시자 ID가 나오면 아래 줄의 주석을 풀고 ca-pub-XXXXXXXXXXXXXXXX를 바꾼다. -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "VideoGame",
-    "name": "연이음 (WordLink)",
-    "alternateName": "WordLink",
-    "url": "https://miniron-v.github.io/wordlink/",
+    "name": "연이음 (Yeonieum)",
+    "alternateName": "Yeonieum",
+    "url": "https://miniron-v.github.io/yeonieum/",
     "image": "https://miniron-v.github.io/assets/logo.png",
     "description": "매일 새로 나오는 단어 카드를 이어 푸는 하루 한 번 웹 퍼즐 게임.",
     "genre": ["Puzzle", "Word game"],
@@ -40,7 +40,7 @@
      * Unity(matchWebGLToCanvasSize)가 캔버스 크기에 맞춰 렌더 해상도를 자동으로 맞춘다.
      */
     :root {
-      --page-bg: #dfeaf8;
+      --page-bg: #E1EFFF;   /* 게임 배경색과 같게 */
       --top-h: 50px;     /* 320x50 */
       --top-gap: 12px;   /* 배너와 게임 상단 버튼 사이 간격 */
       --rail-w: 160px;   /* 160x600 */
@@ -85,7 +85,7 @@
       grid-column: 1;
       min-width: 0;
       min-height: 0;
-      background: #231F20;
+      background: var(--page-bg);
     }
 
     /* 넓은 가로 화면: 좌우 레일 */
@@ -110,7 +110,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: #231F20;
+      background: var(--page-bg);
       outline: none;
       touch-action: none;          /* 모바일에서 스크롤/핀치줌 대신 게임 입력으로 */
       -webkit-user-select: none;
@@ -130,7 +130,7 @@
     #unity-progress-bar {
       height: 6px;
       border-radius: 3px;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(59, 130, 246, 0.18);
       overflow: hidden;
     }
 
@@ -138,7 +138,7 @@
       width: 0%;
       height: 100%;
       border-radius: 3px;
-      background: #ffffff;
+      background: #3b82f6;
       transition: width 0.15s ease-out;
     }
 
@@ -162,7 +162,7 @@
     noscript p {
       position: absolute;
       inset: auto 16px 50% 16px;
-      color: #fff;
+      color: #1f2a3a;
       font: 16px/1.5 sans-serif;
       text-align: center;
     }
@@ -174,12 +174,12 @@
     <aside id="ad-left" class="ad-slot ad-rail" data-ad-kind="rail" aria-label="광고"></aside>
     <main id="game">
       <canvas id="unity-canvas" tabindex="-1" role="img"
-        aria-label="연이음(WordLink) 게임 화면. 단어 카드를 이어 오늘의 퍼즐을 푸는 게임입니다."></canvas>
+        aria-label="연이음(Yeonieum) 게임 화면. 단어 카드를 이어 오늘의 퍼즐을 푸는 게임입니다."></canvas>
       <div id="unity-loading">
         <div id="unity-progress-bar"><div id="unity-progress-bar-full"></div></div>
       </div>
       <div id="unity-warning"></div>
-      <noscript><p>연이음(WordLink)은 브라우저에서 실행되는 단어 연결 퍼즐 게임입니다. 플레이하려면 자바스크립트를 켜 주세요. <a href="/" style="color:#fff">게임 소개 보기</a></p></noscript>
+      <noscript><p>연이음(Yeonieum)은 브라우저에서 실행되는 단어 연결 퍼즐 게임입니다. 플레이하려면 자바스크립트를 켜 주세요. <a href="/">게임 소개 보기</a></p></noscript>
     </main>
     <aside id="ad-right" class="ad-slot ad-rail" data-ad-kind="rail" aria-label="광고"></aside>
   </div>
@@ -261,15 +261,15 @@
     // 빌드를 교체할 때 BUILD_VERSION을 올리면 방문자 브라우저 캐시를 우회한다.
     var BUILD_VERSION = "1.0.0";
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/wordlink.loader.js?v=" + BUILD_VERSION;
+    var loaderUrl = buildUrl + "/yeonieum.loader.js?v=" + BUILD_VERSION;
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/wordlink.data.unityweb?v=" + BUILD_VERSION,
-      frameworkUrl: buildUrl + "/wordlink.framework.js.unityweb?v=" + BUILD_VERSION,
-      codeUrl: buildUrl + "/wordlink.wasm.unityweb?v=" + BUILD_VERSION,
+      dataUrl: buildUrl + "/yeonieum.data.unityweb?v=" + BUILD_VERSION,
+      frameworkUrl: buildUrl + "/yeonieum.framework.js.unityweb?v=" + BUILD_VERSION,
+      codeUrl: buildUrl + "/yeonieum.wasm.unityweb?v=" + BUILD_VERSION,
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Yeonieum",
-      productName: "WordLink",
+      productName: "Yeonieum",
       productVersion: BUILD_VERSION,
       showBanner: unityShowBanner,
       matchWebGLToCanvasSize: true,
