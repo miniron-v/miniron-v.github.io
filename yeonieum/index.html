@@ -190,16 +190,18 @@
     // 비어 있으면 광고 자리만 비워 두고 아무것도 불러오지 않는다.
     // ---------------------------------------------------------------
     var ADSENSE_CLIENT = "ca-pub-8936569039879498";
-    var AD_SLOT_TOP = "";             // 위쪽 띠 배너 광고 단위 ID (320x50 / 728x90)
-    var AD_SLOT_RAIL = "";            // 좌우 세로 배너 광고 단위 ID (160x600)
+    var AD_SLOT_TOP_MOBILE = "9544752796";  // 위쪽 띠 320x50 (yeonieum-top-mobile)
+    var AD_SLOT_TOP_WIDE = "6347918824";    // 위쪽 띠 728x90, 폭 728px 이상 (yeonieum-top-wide)
+    var AD_SLOT_RAIL = "2607984360";        // 좌우 세로 160x600, 양쪽 같은 단위 (yeonieum-rail)
 
     (function setupAds() {
       if (!ADSENSE_CLIENT) return;
       var filled = {};
 
-      function sizeFor(kind) {
-        if (kind === "rail") return [160, 600];
-        return window.innerWidth >= 728 ? [728, 90] : [320, 50];
+      // [광고 단위 ID, 폭, 높이]
+      function unitFor(kind) {
+        if (kind === "rail") return [AD_SLOT_RAIL, 160, 600];
+        return window.innerWidth >= 728 ? [AD_SLOT_TOP_WIDE, 728, 90] : [AD_SLOT_TOP_MOBILE, 320, 50];
       }
 
       function fillVisibleSlots() {
@@ -207,10 +209,10 @@
         for (var i = 0; i < slots.length; i++) {
           var el = slots[i];
           if (filled[el.id] || el.offsetWidth === 0) continue; // 지금 레이아웃에서 숨겨진 자리는 요청하지 않음
-          var kind = el.getAttribute("data-ad-kind");
-          var slotId = kind === "rail" ? AD_SLOT_RAIL : AD_SLOT_TOP;
+          var unit = unitFor(el.getAttribute("data-ad-kind"));
+          var slotId = unit[0];
           if (!slotId) continue;
-          var size = sizeFor(kind);
+          var size = [unit[1], unit[2]];
           var ins = document.createElement("ins");
           ins.className = "adsbygoogle";
           ins.style.display = "inline-block";
