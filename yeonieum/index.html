@@ -12,8 +12,8 @@
   <meta property="og:url" content="https://miniron-v.github.io/yeonieum/">
   <meta property="og:image" content="https://miniron-v.github.io/assets/logo.png">
   <meta name="theme-color" content="#E1EFFF">
-  <!-- ADSENSE: 게시자 ID가 나오면 아래 줄의 주석을 풀고 ca-pub-XXXXXXXXXXXXXXXX를 바꾼다. -->
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <meta name="google-adsense-account" content="ca-pub-8936569039879498">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8936569039879498" crossorigin="anonymous"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -189,7 +189,7 @@
     // 광고 설정: 애드센스 승인 후 게시자 ID와 광고 단위 ID를 채운다.
     // 비어 있으면 광고 자리만 비워 두고 아무것도 불러오지 않는다.
     // ---------------------------------------------------------------
-    var ADSENSE_CLIENT = "";          // 예: "ca-pub-1234567890123456"
+    var ADSENSE_CLIENT = "ca-pub-8936569039879498";
     var AD_SLOT_TOP = "";             // 위쪽 띠 배너 광고 단위 ID (320x50 / 728x90)
     var AD_SLOT_RAIL = "";            // 좌우 세로 배너 광고 단위 ID (160x600)
 
@@ -260,14 +260,14 @@
 
     // 빌드를 교체할 때 BUILD_ID를 바꾸면 방문자 브라우저 캐시를 우회한다.
     var PRODUCT_VERSION = "1.0.0";
-    var BUILD_ID = "20261114";
+    var BUILD_ID = "20261114b";
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/yeonieum.loader.js?v=" + BUILD_ID;
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/yeonieum.data?v=" + BUILD_ID,
-      frameworkUrl: buildUrl + "/yeonieum.framework.js?v=" + BUILD_ID,
-      codeUrl: buildUrl + "/yeonieum.wasm?v=" + BUILD_ID,
+      dataUrl: buildUrl + "/yeonieum.data.unityweb?v=" + BUILD_ID,
+      frameworkUrl: buildUrl + "/yeonieum.framework.js.unityweb?v=" + BUILD_ID,
+      codeUrl: buildUrl + "/yeonieum.wasm.unityweb?v=" + BUILD_ID,
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Yeonieum",
       productName: "Yeonieum",
